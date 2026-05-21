@@ -12,3 +12,29 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Audit {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  tools               Json
+  teamSize            Int
+  useCase             String
+  isPublic            Boolean  @default(true)
+  shareId             String   @unique @default(uuid())
+  results             Json
+  totalMonthlySavings Int
+  totalAnnualSavings  Int
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  leads               Lead[]
+}
+
+model Lead {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  company   String?
+  role      String?
+  teamSize  Int?
+  auditId   String   @db.ObjectId
+  audit     Audit    @relation(fields: [auditId], references: [id])
+  createdAt DateTime @default(now())
+}
