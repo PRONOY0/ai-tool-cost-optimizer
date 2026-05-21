@@ -13,11 +13,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum useCase {
+  coding
+  school
+  content
+  research
+  customer_support
+  general_chat
+  image_generation
+}
+
 model Audit {
   id                  String   @id @default(auto()) @map("_id") @db.ObjectId
   tools               Json
   teamSize            Int
-  useCase             String
+  useCase             useCase  @default(coding)
   isPublic            Boolean  @default(true)
   shareId             String   @unique @default(uuid())
   results             Json
