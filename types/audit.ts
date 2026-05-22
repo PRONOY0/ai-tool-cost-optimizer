@@ -4,6 +4,7 @@ export type ToolName =
   | "cursor"
   | "copilot"
   | "gemini"
+  | "geminiApi"
   | "windsurf";
 
 export interface ToolInput {
@@ -15,7 +16,7 @@ export interface ToolInput {
 
 export interface Recommendation {
   tool: string;
-  currentPLan: string;
+  currentPlan: string;
   recommendedPlan: string;
   monthlySavings: number;
   reason: string;
@@ -25,4 +26,5 @@ export interface AuditResult {
   recommendation: Recommendation[];
   totalMonthlySavings: number;
   totalAnnualSavings: number;
+  warnings: string[];
 }
