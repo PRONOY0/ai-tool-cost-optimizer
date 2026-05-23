@@ -28,7 +28,6 @@ model Audit {
   tools               Json
   teamSize            Int
   useCase             useCase  @default(coding)
-  isPublic            Boolean  @default(true)
   shareId             String   @unique @default(uuid())
   results             Json
   totalMonthlySavings Int
