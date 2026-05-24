@@ -33,7 +33,7 @@ export default function FloatingIcons() {
                 return (
                     <div
                         key={i}
-                        className="absolute w-24 h-24 rounded-2xl bg-white shadow-md items-center justify-center floating-icon hidden lg:flex"
+                        className="absolute w-24 h-24 rounded-2xl bg-white shadow-md items-center justify-center floating-icon hidden lg:flex pointer-events-none"
                         style={{
                             top: tool.top,
                             left: tool.left,

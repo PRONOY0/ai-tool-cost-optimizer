@@ -2,12 +2,28 @@
 import FloatingIcons from "@/components/FloatingIcons";
 import { Highlighter } from "@/components/ui/highlighter"
 import { ShinyButton } from "@/components/ui/shiny-button"
+import { useState } from "react";
+import AuditForm from "@/components/AuditForm";
 
 export default function Home() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
-    <div className="grid-background min-h-full">
-      {/* Hero */}
-      <section className="flex flex-col items-center justify-center text-center px-6 py-20 min-h-[60vh]">
+    <div className="min-h-full relative z-50">
+      <section id="audit-form" className="max-w-full mx-auto px-6 pb-20">
+        {
+          isDialogOpen && (
+            <div
+              className="fixed inset-0 z-999 flex items-center justify-center p-4 w-full"
+              onClick={() => setIsDialogOpen(false)} 
+            >
+              <div onClick={e => e.stopPropagation()}>
+                <AuditForm onClose={() => setIsDialogOpen(false)} />
+              </div>
+            </div>
+          )
+        }
+      </section>
+      <section className="grid-background flex flex-col items-center justify-center text-center px-6 py-20 min-h-[60vh]">
 
         <div className="badge">
           <span className="badge-dot" />
@@ -27,7 +43,8 @@ export default function Home() {
           you&apos;re wasting money and exactly what to switch.
         </p>
 
-        <ShinyButton>
+
+        <ShinyButton onClick={() => setIsDialogOpen((prev) => !prev)}>
           Audit My AI Spend →
         </ShinyButton>
 
@@ -39,15 +56,10 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="absolute overflow-hidden flex flex-col items-center min-h-full w-4/5 top-1/12">
+        <div className="absolute overflow-hidden flex flex-col items-center min-h-full w-4/5 top-1/12 pointer-events-none">
           <FloatingIcons />
         </div>
 
-      </section>
-
-      {/* Form goes here */}
-      <section id="audit-form" className="max-w-3xl mx-auto px-6 pb-20">
-        {/* your form component */}
       </section>
     </div>
   );

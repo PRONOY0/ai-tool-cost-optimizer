@@ -33,3 +33,15 @@
 **Blockers / what I'm stuck on:** Unsure about UI approach deciding between building from scratch vs scaffolding with v0/google-studio-ai and customizing. Need to balance polish with shipping speed.
 
 **Plan for tomorrow:** Design Frontend Design Ideas Inspiration based on that I'll build homepage and results page too and fix the resend problem. After finishing the frontend probably will interview 3 users.
+
+## Day 5 — 2026-05-24
+
+**Hours worked:** 4
+
+**What I did:** Today I was confused on what design to select and what do I do should I just copy paste copy paste ai generated code from google studio ai or should I use v0 dev for this purpose I spent around 1hr on deciding what design scheme should I choose or should I just make my own then I finally came up with an idea where I just copied credex website hero section it was straight to point what to make and what not so it was more easier than deciding an ui. So I made navbar then designed the hero section used ai to generate that beautiful grid and used magic UI for use components like shinyButton then Made the floating icons of tools. After completing hero section then I built the popup dialog box for the audit form used shadcn for that easy no need to think too much simple and clean. Checked the post route too from shadcn form it worked.
+
+**What I learned:** Copying a design you admire is faster than deciding from scratch stopped wasting time on design decisions and just shipped. Also learned that CSS mask-image clips and moving the overlay outside the masked div fixed it.
+
+**Blockers / what I'm stuck on:** Was stuck at part where my popup dialog box is being covered by the mask I was pretty confused what to do and what not then I thought maybe it's because of that class which I've added on top of the homepage parent div so I moved the audit form dialog box at top and moved the classname for grid and mask into it's children div. Today I was stuck on this part.
+
+**Plan for tomorrow:** Will make the audit/[id] page tomorrow and I'll modify the popup dialog box a bit will try to match the color schema if it looks good then I'll keep that if not then back to basics black & white from shadcn. Will finish results page, wire up email capture modal, and deploy to Vercel. WIll also reach out to 2-3 people for user interviews - cannot leave this day to 6.

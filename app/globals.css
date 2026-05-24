@@ -13,15 +13,19 @@ body {
     linear-gradient(to bottom, #e2e8e4 1px, transparent 1px);
   background-size: 140px 140px;
 
-  -webkit-mask-image: radial-gradient(
-    ellipse 100% 80% at 50% 100%,
-    black 50%,
-    transparent 80%
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 70%,
+    transparent 100%
   );
-  mask-image: radial-gradient(
-    ellipse 100% 80% at 50% 30%,
-    black 50%,
-    transparent 80%
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 70%,
+    transparent 100%
   );
 }
 
