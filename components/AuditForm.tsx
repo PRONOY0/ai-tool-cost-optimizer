@@ -74,7 +74,7 @@ export default function AuditForm({ onClose }: { onClose?: () => void }) {
                 useCase: selectedUseCase
             })
             if (res.data.share_id) {
-                router.push(`/audit/${res.data.share_id}`)
+                router.push(`/api/audit/${res.data.share_id}`)
             }
         } catch (e) {
             console.error(e)

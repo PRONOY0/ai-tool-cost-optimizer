@@ -7,6 +7,7 @@ export async function GET(
 ) {
   try {
     const { shareId } = await params;
+    console.log(shareId);
 
     const audit = await prisma.audit.findUnique({
       where: {
