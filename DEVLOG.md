@@ -45,3 +45,15 @@
 **Blockers / what I'm stuck on:** Was stuck at part where my popup dialog box is being covered by the mask I was pretty confused what to do and what not then I thought maybe it's because of that class which I've added on top of the homepage parent div so I moved the audit form dialog box at top and moved the classname for grid and mask into it's children div. Today I was stuck on this part.
 
 **Plan for tomorrow:** Will make the audit/[id] page tomorrow and I'll modify the popup dialog box a bit will try to match the color schema if it looks good then I'll keep that if not then back to basics black & white from shadcn. Will finish results page, wire up email capture modal, and deploy to Vercel. WIll also reach out to 2-3 people for user interviews - cannot leave this day to 6.
+
+## Day 5 — 2026-05-24
+
+**Hours worked:** 6
+
+**What I did:** Today I was pretty confused on the ui design for the result page first I was searching on dribble and behance but later I got this idea of showing the result one by one animated form it enhances the User experience and better than any simple plain page. Made this result page step by step where it shows each page differently and each page has its own info. 
+
+**What I learned:** None currently.
+
+**Blockers / what I'm stuck on:** Was stuck at conditionally rendering the icons for each tools and fixing the animation.
+
+**Plan for tomorrow:** Will fix the summary page UI and probably I'll have the replies by tomorrow. And will add those user interviews.
