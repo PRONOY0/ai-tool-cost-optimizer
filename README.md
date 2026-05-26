@@ -16,13 +16,13 @@ a PDF export, and optionally a Credex consultation if the savings are worth it.
 
 ## Screenshots
 
-![Audit Form]([https://github.com/PRONOY0/ai-tool-cost-optimizerYOUR-SCREENSHOT-URL-1.png](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/auditForm.png))
+![Audit Form](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/auditForm.png)
 *Step 1 — fill in your tools, plans, and seats*
 
-![Home Page]([https://user-images.githubusercontent.com/YOUR-SCREENSHOT-URL-2.png](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/homepage.png))
+![Home Page](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/homepage.png)
 *Home Page*
 
-![Shareable Report]([https://user-images.githubusercontent.com/YOUR-SCREENSHOT-URL-3.png](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/finalSummary.png))
+![Shareable Report](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/finalSummary.png)
 *Every audit gets a unique public URL*
 
 ## Tech Stack
