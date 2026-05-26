@@ -16,7 +16,7 @@ export default function Home() {
               className="fixed inset-0 z-999 flex items-center justify-center p-4 w-full"
               onClick={() => setIsDialogOpen(false)} 
             >
-              <div onClick={e => e.stopPropagation()}>
+              <div className="w-3xl" onClick={e => e.stopPropagation()}>
                 <AuditForm onClose={() => setIsDialogOpen(false)} />
               </div>
             </div>
