@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     });
 
     await resend.emails.send({
-      from: "Credex <onboarding@resend.dev>",
+      from: "StackAudit  <onboarding@resend.dev>",
       to: email,
       subject: "Your AI Spend Audit Report",
       html: `
