@@ -57,3 +57,15 @@
 **Blockers / what I'm stuck on:** Was stuck at conditionally rendering the icons for each tools and fixing the animation.
 
 **Plan for tomorrow:** Will fix the summary page UI and probably I'll have the replies by tomorrow. And will add those user interviews.
+
+## Day 7 — 2026-05-26
+
+**Hours worked:** 12
+
+**What I did:** Today I finished the project by wrapping up with sending of mails, generation of audit pdf and then completed all the markdown files as listed. Asked few of my colleagues and some of my network freelancers that I know I got their reply late but the opinion was worth it. I'm thinking that even if I don't get selected I'll keep improving this project as one of my personal project I'll increase it's readeability and ease of use. If I've another week I would have worked more on the logic and improve it more instead of adding 100s of if else line for the audit logic I would generalize it and some audit form style changes too. As of testing using jest I didn't knew it at first so I used ai to know first what it is actually then tried to understand what the code is after understanding it I finalized it. I've one simple rule in using ai code the code that I don't understand is the code I don't trust.
+
+**What I learned:** Today I learned how to run tests.
+
+**Blockers / what I'm stuck on:** Was stuck at non tech things like writing on economics and gtm. Then the 3 users interview.
+
+**Plan for tomorrow:** No work by tomorrow.

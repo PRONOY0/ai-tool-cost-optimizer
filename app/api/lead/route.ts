@@ -7,7 +7,6 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: NextRequest) {
   try {
     const { email, company, role, teamSize, shareId } = await req.json();
-    console.log(email, company, role, teamSize, shareId);
 
     if (!email || !shareId) {
       return NextResponse.json(
@@ -19,8 +18,6 @@ export async function POST(req: NextRequest) {
     const audit = await prisma.audit.findUnique({
       where: { shareId: shareId },
     });
-
-    console.log(audit);
 
     if (!audit) {
       return NextResponse.json({ message: "Audit not found" }, { status: 404 });
