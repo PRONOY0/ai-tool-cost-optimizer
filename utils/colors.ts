@@ -8,5 +8,5 @@ export const TOOL_COLORS: Record<string, string> = {
 };
 
 export function getToolColor(tool: string): string {
-  return TOOL_COLORS[tool.toLowerCase()] || "#10B981"; // default green
+  return TOOL_COLORS[tool.toLowerCase()] || "#10B981";
 }

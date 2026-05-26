@@ -1,12 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { PRICING } from "@/lib/pricing"
 import { useCase } from "@prisma/client"
 import { Field, FieldGroup, FieldLabel, FieldSet } from "./ui/field"
 import { Input } from "./ui/input"
-import axios from "axios";
+import axios from "axios"
 
 const TOOL_PLANS: Record<string, string[]> = {
     chatgpt: Object.keys(PRICING.chatgpt).filter(k => k !== "enterprise"),
@@ -36,9 +36,20 @@ const defaultTool = (): ToolRow => ({
 
 export default function AuditForm({ onClose }: { onClose?: () => void }) {
     const router = useRouter()
-    const [teamSize, setTeamSize] = useState(1)
-    const [selectedUseCase, setSelectedUseCase] = useState<useCase>(useCase.coding)
-    const [tools, setTools] = useState<ToolRow[]>([defaultTool()])
+    const [selectedUseCase, setSelectedUseCase] = useState<useCase>(() => {
+        if (typeof window !== "undefined") {
+            return localStorage.getItem("auditUseCase") as useCase || useCase.coding
+        }
+        return useCase.coding
+    })
+
+    const [tools, setTools] = useState<ToolRow[]>(() => {
+        if (typeof window !== "undefined") {
+            const saved = localStorage.getItem("auditTools")
+            return saved ? JSON.parse(saved) : [defaultTool()]
+        }
+        return [defaultTool()]
+    })
     const [loading, setLoading] = useState(false)
 
     function updateTool(index: number, field: keyof ToolRow, value: string | number) {
@@ -68,13 +79,14 @@ export default function AuditForm({ onClose }: { onClose?: () => void }) {
     async function handleSubmit() {
         setLoading(true)
         try {
+            const teamSize = Math.max(...tools.map(t => t.seats ?? 1))
             const res = await axios.post("/api/audit", {
                 tools,
                 teamSize,
-                useCase: selectedUseCase
+                useCase: selectedUseCase,
             })
             if (res.data.share_id) {
-                router.push(`/api/audit/${res.data.share_id}`)
+                router.push(`/audit/${res.data.share_id}`)
             }
         } catch (e) {
             console.error(e)
@@ -83,44 +95,38 @@ export default function AuditForm({ onClose }: { onClose?: () => void }) {
         }
     }
 
+    useEffect(() => {
+        localStorage.setItem("auditTools", JSON.stringify(tools))
+    }, [tools])
+
+    useEffect(() => {
+        localStorage.setItem("auditUseCase", selectedUseCase)
+    }, [selectedUseCase])
+
     return (
-        <div className="w-4xl max-w-full mx-auto bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+        <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
             <FieldSet>
                 <FieldGroup>
-                    <div className="flex gap-4">
-                        <Field className="flex-1">
-                            <FieldLabel htmlFor="teamSize">Team Size</FieldLabel>
-                            <Input
-                                id="teamSize"
-                                type="number"
-                                min={1}
-                                value={teamSize}
-                                onChange={e => setTeamSize(Number(e.target.value))}
-                                placeholder="e.g. 5"
-                            />
-                        </Field>
-
-                        <Field className="flex-1">
-                            <FieldLabel htmlFor="useCase">Primary Use Case</FieldLabel>
-                            <select
-                                id="useCase"
-                                className="w-full border rounded-md px-3 py-2 text-sm mt-1"
-                                value={selectedUseCase}
-                                onChange={e => setSelectedUseCase(e.target.value as useCase)}
-                            >
-                                {USE_CASES.map(uc => (
-                                    <option key={uc} value={uc}>{uc.replace("_", " ")}</option>
-                                ))}
-                            </select>
-                        </Field>
-                    </div>
+                    <Field>
+                        <FieldLabel htmlFor="useCase">Primary Use Case</FieldLabel>
+                        <select
+                            id="useCase"
+                            className="w-full border rounded-md px-3 py-2 text-sm mt-1"
+                            value={selectedUseCase}
+                            onChange={e => setSelectedUseCase(e.target.value as useCase)}
+                        >
+                            {USE_CASES.map(uc => (
+                                <option key={uc} value={uc}>{uc.replace("_", " ")}</option>
+                            ))}
+                        </select>
+                    </Field>
                 </FieldGroup>
 
                 <FieldGroup>
                     <FieldLabel>Your AI Tools</FieldLabel>
                     {tools.map((tool, i) => (
-                        <div key={i} className="flex gap-2 items-end">
-                            <Field className="flex-1">
+                        <div key={i} className="flex gap-2 items-end flex-wrap">
+                            <Field className="flex-1 min-w-30">
                                 <FieldLabel>Tool</FieldLabel>
                                 <select
                                     className="w-full border rounded-md px-3 py-2 text-sm"
@@ -133,7 +139,7 @@ export default function AuditForm({ onClose }: { onClose?: () => void }) {
                                 </select>
                             </Field>
 
-                            <Field className="flex-1">
+                            <Field className="flex-1 min-w-25">
                                 <FieldLabel>Plan</FieldLabel>
                                 <select
                                     className="w-full border rounded-md px-3 py-2 text-sm"
@@ -146,7 +152,7 @@ export default function AuditForm({ onClose }: { onClose?: () => void }) {
                                 </select>
                             </Field>
 
-                            <Field className="w-28">
+                            <Field className="w-24">
                                 <FieldLabel>$/month</FieldLabel>
                                 <Input
                                     type="number"
@@ -154,6 +160,17 @@ export default function AuditForm({ onClose }: { onClose?: () => void }) {
                                     value={tool.monthlySpend}
                                     onChange={e => updateTool(i, "monthlySpend", Number(e.target.value))}
                                     placeholder="0"
+                                />
+                            </Field>
+
+                            <Field className="w-20">
+                                <FieldLabel>Seats</FieldLabel>
+                                <Input
+                                    type="number"
+                                    min={1}
+                                    value={tool.seats}
+                                    onChange={e => updateTool(i, "seats", Number(e.target.value))}
+                                    placeholder="1"
                                 />
                             </Field>
 
@@ -177,11 +194,19 @@ export default function AuditForm({ onClose }: { onClose?: () => void }) {
                 </FieldGroup>
             </FieldSet>
 
-            <div className="flex justify-end gap-3 mt-6">
+            <div className="flex justify-between items-center mt-6">
+                {onClose && (
+                    <button
+                        onClick={onClose}
+                        className="text-sm text-gray-400 hover:text-gray-600 transition"
+                    >
+                        Cancel
+                    </button>
+                )}
                 <button
                     onClick={handleSubmit}
                     disabled={loading}
-                    className="bg-black text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-zinc-800 transition disabled:opacity-50"
+                    className="ml-auto bg-black text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-zinc-800 transition disabled:opacity-50"
                 >
                     {loading ? "Analyzing..." : "Analyze My Spend →"}
                 </button>

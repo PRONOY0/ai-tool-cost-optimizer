@@ -15,7 +15,7 @@ client.on("error", (err) => {
 });
 
 client.on("connect", () => {
-  console.log("✅ Redis connected");
+  console.log("Redis connected");
 });
 
 export default client;

@@ -26,7 +26,6 @@ enum useCase {
 model Audit {
   id                  String   @id @default(auto()) @map("_id") @db.ObjectId
   tools               Json
-  teamSize            Int
   useCase             useCase  @default(coding)
   shareId             String   @unique @default(uuid())
   results             Json
@@ -39,7 +38,7 @@ model Audit {
 
 model Lead {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  email     String   @unique
+  email     String   
   company   String?
   role      String?
   teamSize  Int?

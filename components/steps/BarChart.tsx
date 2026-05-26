@@ -8,7 +8,6 @@ interface Props {
 }
 
 export default function BarChartStep({ tools }: Props) {
-    // Sort tools by spend desc
     const sortedTools = [...tools].sort((a, b) => b.monthlySpend - a.monthlySpend);
 
     return (

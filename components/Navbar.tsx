@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ShimmerButton } from './ui/shimmer-button'
 
 const Navbar = () => {
     return (
@@ -9,13 +8,6 @@ const Navbar = () => {
 
                 <p className='lowercase text-4xl text-[#086841] font-bold font-serif'>Credex</p>
             </Link>
-
-            {/* <button className='py-4 px-10 bg-[#a7f6d4] rounded-full cursor-pointer text-[#086841] text-xl border-[#086841] border'>
-            </button> */}
-
-            <ShimmerButton shimmerColor='#086841' background='#a7f6d4' className='text-black'>
-                Login
-            </ShimmerButton>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { AlertCircle, Quote } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 
 interface Props {
     summary: string;
@@ -8,7 +8,7 @@ interface Props {
 
 export default function SummaryStep({ summary, warnings }: Props) {
     return (
-        <div className="flex flex-col items-center text-center w-full max-w-3xl mx-auto space-y-16">
+        <div className="flex flex-col items-center text-center w-full max-w-7xl mx-auto space-y-24">
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -16,9 +16,8 @@ export default function SummaryStep({ summary, warnings }: Props) {
                 transition={{ duration: 0.6 }}
                 className="relative"
             >
-                <Quote className="absolute -top-12 -left-8 w-16 h-16 text-gray-100 rotate-180" />
-                <blockquote className="text-3xl md:text-5xl font-black tracking-tighter leading-tight text-balance text-black">
-                    &quot;{summary}&quot;
+                <blockquote className="text-3xl md:text-4xl font-black tracking-tighter leading-tight text-balance text-black">
+                    {summary}
                 </blockquote>
             </motion.div>
 

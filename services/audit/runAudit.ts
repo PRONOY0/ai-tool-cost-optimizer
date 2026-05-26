@@ -103,25 +103,26 @@ function auditSingleTool(input: ToolInput, useCase: useCase): Recommendation {
     };
   }
 
-  //! 2) seat is more than 3 and use case is coding or research and the plan is not team then convert it to team
+  //! 2) seat is more than 3 and the plan is not team then convert it to team
 
-  if (
-    (input.seats ?? 1) >= 3 &&
-    (useCase === "coding" || useCase === "research") &&
-    input.plan !== TEAM_PLAN[input.tool]
-  ) {
-    const currentTotalSpend = input.monthlySpend;
-    const teamTotalSpend = TEAM_PLAN_PRICE[input.tool] * (input.seats ?? 1);
-    return {
-      tool: input.tool,
-      currentPlan: input.plan,
-      recommendedPlan: TEAM_PLAN[input.tool],
-      monthlySavings: currentTotalSpend - teamTotalSpend,
-      reason: `For ${useCase} you should upgrade your plan to ${TEAM_PLAN[input.tool]} it will give you more controls and shared workspace.`,
-    };
+  if ((input.seats ?? 1) >= 3 && input.plan !== TEAM_PLAN[input.tool]) {
+    const currentCostPerSeat = input.monthlySpend / (input.seats ?? 1);
+    const teamCostPerSeat = TEAM_PLAN_PRICE[input.tool];
+
+    if (teamCostPerSeat < currentCostPerSeat) {
+      const teamTotalSpend = teamCostPerSeat * (input.seats ?? 1);
+
+      return {
+        tool: input.tool,
+        currentPlan: input.plan,
+        recommendedPlan: TEAM_PLAN[input.tool],
+        monthlySavings: input.monthlySpend - teamTotalSpend,
+        reason: `At ${input.seats} seats, ${TEAM_PLAN[input.tool]} costs $${teamCostPerSeat}/seat vs your current $${currentCostPerSeat.toFixed(2)}/seat. Saves $${(input.monthlySpend - teamTotalSpend).toFixed(0)}/month.`,
+      };
+    }
   }
 
-  //! 3) seat is more than 3 and usecase is not coding or reasearch and the plan is team then  downgrade it to pro
+  //! 3) seat is more than 3 and usecase is not coding or reasearch and the plan is team then downgrade it to pro
   if (
     (input.seats ?? 1) >= 3 &&
     useCase !== "coding" &&
@@ -188,6 +189,7 @@ function auditSingleTool(input: ToolInput, useCase: useCase): Recommendation {
 
   //! 7) if usecase is very general and plan is like plus or team then change it to basic like pro or maybe free
   if (
+    (input.seats ?? 1) === 1 &&
     useCase !== "coding" &&
     useCase !== "research" &&
     input.plan !== soloAlterNative[input.tool] &&

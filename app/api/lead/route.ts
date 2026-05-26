@@ -6,9 +6,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, company, role, teamSize, auditId } = await req.json();
+    const { email, company, role, teamSize, shareId } = await req.json();
+    console.log(email, company, role, teamSize, shareId);
 
-    if (!email || !auditId) {
+    if (!email || !shareId) {
       return NextResponse.json(
         { message: "Email and auditId are required" },
         { status: 400 },
@@ -16,8 +17,10 @@ export async function POST(req: NextRequest) {
     }
 
     const audit = await prisma.audit.findUnique({
-      where: { id: auditId },
+      where: { shareId: shareId },
     });
+
+    console.log(audit);
 
     if (!audit) {
       return NextResponse.json({ message: "Audit not found" }, { status: 404 });
@@ -29,12 +32,12 @@ export async function POST(req: NextRequest) {
         company,
         role,
         teamSize,
-        auditId,
+        auditId: audit.id,
       },
     });
 
     await resend.emails.send({
-      from: "SpendWise <onboarding@resend.dev>",
+      from: "Credex <onboarding@resend.dev>",
       to: email,
       subject: "Your AI Spend Audit Report",
       html: `
@@ -52,7 +55,7 @@ export async function POST(req: NextRequest) {
       `,
     });
 
-    return NextResponse.json({ success: true, leadId: lead.id });
+    return NextResponse.json({ success: true, leadId: lead });
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Internal server error";

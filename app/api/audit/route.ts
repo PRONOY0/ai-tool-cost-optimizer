@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { tools, useCase, teamSize, isPublic } = await req.json();
+    const { tools, useCase } = await req.json();
 
     const auditResult = runAudit(tools, useCase);
 
@@ -31,10 +31,8 @@ export async function POST(req: NextRequest) {
 
     const auditSave = await prisma.audit.create({
       data: {
-        teamSize,
         useCase,
         tools,
-        isPublic,
         results: JSON.parse(
           JSON.stringify({
             auditResult,

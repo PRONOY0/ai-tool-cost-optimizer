@@ -16,7 +16,26 @@ export default function SavingsStep({ totalMonthlySavings, totalAnnualSavings }:
           transition={{ type: "spring", bounce: 0.5, duration: 0.8 }}
           className="text-8xl"
         >
-          👍
+          <motion.svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#16a34a"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
+            <motion.polyline
+              points="20 6 9 17 4 12"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            />
+          </motion.svg>
         </motion.div>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -45,9 +64,21 @@ export default function SavingsStep({ totalMonthlySavings, totalAnnualSavings }:
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="text-8xl md:text-[160px] font-mono font-black tracking-tighter text-[#10B981] leading-none">
-          $<CountUp end={totalMonthlySavings} duration={2.5} separator="," />
-          <span className="text-4xl md:text-6xl text-green-400 font-black align-top ml-2">/MO</span>
+        <div
+          className="text-8xl md:text-[160px] font-mono font-black tracking-tighter leading-none"
+          style={{ color: totalMonthlySavings < 0 ? "#EF4444" : "#10B981" }}
+        >
+          {totalMonthlySavings < 0 ? (
+            <>
+              You&apos;re burning $<CountUp end={Math.abs(totalMonthlySavings)} duration={2.5} separator="," />
+              <span className="text-4xl md:text-6xl font-black align-top ml-2" style={{ color: "#FCA5A5" }}>/MO</span>
+            </>
+          ) : (
+            <>
+              $<CountUp end={totalMonthlySavings} duration={2.5} separator="," />
+              <span className="text-4xl md:text-6xl text-green-400 font-black align-top ml-2">/MO</span>
+            </>
+          )}
         </div>
       </motion.div>
 
@@ -60,8 +91,13 @@ export default function SavingsStep({ totalMonthlySavings, totalAnnualSavings }:
         <h2 className="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1">
           Total Annual Savings
         </h2>
-        <p className="text-4xl font-mono font-bold tracking-tighter text-[#10B981]">
-          ${totalAnnualSavings.toLocaleString()}
+        <p className="text-4xl font-mono font-bold tracking-tighter" style={{
+          color: totalAnnualSavings < 0 ? "#EF4444" : "#10B981"
+        }}>
+          {totalAnnualSavings < 0
+            ? `You're burning $${Math.abs(totalAnnualSavings).toLocaleString()}`
+            : `$${totalAnnualSavings.toLocaleString()}`
+          }
         </p>
       </motion.div>
     </div>

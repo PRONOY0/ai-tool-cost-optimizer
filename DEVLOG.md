@@ -46,7 +46,7 @@
 
 **Plan for tomorrow:** Will make the audit/[id] page tomorrow and I'll modify the popup dialog box a bit will try to match the color schema if it looks good then I'll keep that if not then back to basics black & white from shadcn. Will finish results page, wire up email capture modal, and deploy to Vercel. WIll also reach out to 2-3 people for user interviews - cannot leave this day to 6.
 
-## Day 5 — 2026-05-24
+## Day 6 — 2026-05-25
 
 **Hours worked:** 6
 
