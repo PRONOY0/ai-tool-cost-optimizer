@@ -15,12 +15,11 @@ generates an AI summary of where the waste is. You get a shareable report URL,
 a PDF export, and optionally a Credex consultation if the savings are worth it.
 
 ## Screenshots
+![Home Page](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/homepage.png)
+*Home Page*
 
 ![Audit Form](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/auditForm.png)
 *Step 1 — fill in your tools, plans, and seats*
-
-![Home Page](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/homepage.png)
-*Home Page*
 
 ![Shareable Report](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/finalSummary.png)
 *Every audit gets a unique public URL*
