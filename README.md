@@ -14,6 +14,17 @@ stack through 7 audit rules, calculates your actual vs optimal spend, and
 generates an AI summary of where the waste is. You get a shareable report URL,
 a PDF export, and optionally a Credex consultation if the savings are worth it.
 
+## Screenshots
+
+![Audit Form]([https://github.com/PRONOY0/ai-tool-cost-optimizerYOUR-SCREENSHOT-URL-1.png](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/auditForm.png))
+*Step 1 — fill in your tools, plans, and seats*
+
+![Home Page]([https://user-images.githubusercontent.com/YOUR-SCREENSHOT-URL-2.png](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/homepage.png))
+*Home Page*
+
+![Shareable Report]([https://user-images.githubusercontent.com/YOUR-SCREENSHOT-URL-3.png](https://github.com/PRONOY0/ai-tool-cost-optimizer/blob/master/public/finalSummary.png))
+*Every audit gets a unique public URL*
+
 ## Tech Stack
 
 - **Next.js 14** - frontend + backend in one repo, no separate server
