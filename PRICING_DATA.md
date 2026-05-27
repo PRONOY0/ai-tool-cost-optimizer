@@ -80,6 +80,5 @@ _Last verified: 2026-05-21_
 ---
 
 ## Google Gemini API
-
-- Gemini 2.5 Flash: Input $0.30/MTok, Output $2.50/MTok — https://openrouter.ai/google/gemini-2.5-flash — verified 2026-05-21
-- Gemini 3.5 Flash: Input $1.50/MTok, Output $9.00/MTok — https://openrouter.ai/google/gemini-3.5-flash — verified 2026-05-21
+- Gemini 2.5 Flash: Input $0.30/MTok, Output $2.50/MTok — https://ai.google.dev/gemini-api/docs/pricing — verified 2026-05-21
+- Gemini 3.5 Flash: Input $1.50/MTok, Output $9.00/MTok — https://ai.google.dev/gemini-api/docs/pricing — verified 2026-05-21
