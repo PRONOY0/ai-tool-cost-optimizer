@@ -1,3 +1,10 @@
+## Day 1 — 2026-05-20
+**Hours worked:** 0
+**What I did:** Received the assignment. Read through it fully twice.
+**What I learned:** —
+**Blockers / what I'm stuck on:** —
+**Plan for tomorrow:** Set up the repo, define the schema, start pricing research.
+
 ## Day 2 — 2026-05-21
 
 **Hours worked:** 6
