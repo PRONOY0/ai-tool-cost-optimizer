@@ -55,3 +55,23 @@ integrate, does the job.
 **Resend**
 Easy to integrate and I get a free email for onboarding flows out of the box.
 Didn't need anything more complex than that.
+
+## Scaling to 10k Audits/Day
+
+The audit engine itself is fast it's pure in-memory logic, no bottleneck
+there. The two weak points at scale are the Groq API call and MongoDB writes.
+
+First thing I'd do is move the Groq summary generation into a background job
+queue using BullMQ. Right now it's synchronous the user waits for the AI
+summary before seeing results. At scale that's a liability. Better to return
+the audit result immediately and stream the summary in once it's ready.
+
+Beyond that: cache the pricing constants at the edge (they change maybe once
+a month, no reason to recompute per request), add MongoDB read replicas once
+read volume gets serious, and put the audit POST endpoint behind a proper
+queue so traffic spikes don't overwhelm the DB. Rate limiting is already in
+place via Redis which helps.
+
+I haven't used BullMQ in production yet that's an honest gap. But the
+architecture decision is clear even if the implementation would take me a
+day to learn.
